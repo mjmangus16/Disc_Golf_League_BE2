@@ -1,7 +1,15 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// Users building a format will be able to select from a few pre-built options to "customize" their format.
+// Based on their selections, the route will run the functions that match their selections.
+// Those functions can be found in the pointsHandlers and scoreHandlers folders
+
 const FormatSchema = new Schema({
+  league_id: {
+    type: Number,
+    required: true
+  },
   details: {
     // Explanation of the format
     type: String,
@@ -28,14 +36,14 @@ const FormatSchema = new Schema({
     default: false
   },
   points: {
-    type: Boolean,
+    type: String,
     required: true,
-    default: false
+    default: "none"
   },
   scores: {
-    type: Boolean,
+    type: String,
     required: true,
-    default: false
+    default: "none"
   },
   dropWorst: {
     type: Number,
@@ -48,3 +56,5 @@ const FormatSchema = new Schema({
     default: 0
   }
 });
+
+module.exports = LeagueFormat = mongoose.model("leagueFormat", FormatSchema);
